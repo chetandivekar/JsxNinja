@@ -5,15 +5,6 @@ function activate(context) {
     'Congratulations, your extension "JSX-Attribute-Ninja" is now active!'
   );
 
-  let disposable = vscode.commands.registerCommand(
-    "JSX-Attribute-Ninja.JsxNinja",
-    function () {
-      vscode.window.showInformationMessage(
-        "Hello World from JSX Attribute Ninja!"
-      );
-    }
-  );
-
   vscode.languages.registerDocumentFormattingEditProvider(
     ["javascriptreact", "jsx", "typescriptreact", "javascript"],
     {
@@ -92,8 +83,6 @@ function activate(context) {
       },
     }
   );
-
-  context.subscriptions.push(disposable);
 }
 
 function deactivate() {}

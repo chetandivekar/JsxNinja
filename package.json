@@ -4,7 +4,7 @@
   "publisher": "ChetanDivekar",
   "icon": "./logo.png",
   "description": "A powerful extension for working with JSX attributes.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.79.0"
   },
@@ -12,14 +12,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:JSX-Attribute-Ninja.JsxNinja"
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact"
   ],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "JSX-Attribute-Ninja.JsxNinja",
-      "title": "JSX Ninja"
-    }],
     "languages": [
       {
         "id": "javascript",
