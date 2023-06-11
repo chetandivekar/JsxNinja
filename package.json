@@ -1,8 +1,9 @@
 {
   "name": "jsxninja",
   "displayName": "JSX Attribute Ninja",
-  "publisher": "Chetan Divekar",
-  "description": "",
+  "publisher": "ChetanDivekar",
+  "icon": "./logo.png",
+  "description": "A powerful extension for working with JSX attributes.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
@@ -17,8 +18,27 @@
   "contributes": {
     "commands": [{
       "command": "JSX-Attribute-Ninja.JsxNinja",
-      "title": "Jsx Ninja"
-    }]
+      "title": "JSX Ninja"
+    }],
+    "languages": [
+      {
+        "id": "javascript",
+        "extensions": [".js"]
+      },
+      {
+        "id": "javascriptreact",
+        "extensions": [".jsx"]
+      },
+      {
+        "id": "typescript",
+        "extensions": [".ts"]
+      },
+      {
+        "id": "typescriptreact",
+        "extensions": [".tsx"]
+      }
+    ],
+    "documentFormattingProvider": true
   },
   "scripts": {
     "lint": "eslint .",
@@ -35,5 +55,14 @@
     "mocha": "^10.2.0",
     "typescript": "^5.1.3",
     "@vscode/test-electron": "^2.3.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chetandivekar/JsxNinja.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chetandivekar/JsxNinja/issues"
+  },
+  "homepage": "https://github.com/chetandivekar/JsxNinja"
 }
