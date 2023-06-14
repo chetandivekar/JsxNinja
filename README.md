@@ -2,7 +2,7 @@
 
 The JSX Attribute Ninja is a Visual Studio Code extension that helps you effortlessly replace and modify attributes in JSX files. It automates the process of converting commonly used attributes in JSX, making your development workflow faster and more efficient.
 
-![Alt Text](./Screencast%20from%2014-06-23%2001_35_32%20PM%20IST.gif)
+![Alt Text](./Ninja.gif)
 
 ## Features
 
