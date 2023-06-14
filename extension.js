@@ -99,6 +99,21 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        //Replacing <hr> whith the attritubes to <hr/>
+        const hrRegex1 = /<hr\s+class(\s*=\s*("|')([^"']*?)("|'))?\s*>/g;
+        let hrMatch1;
+        while ((hrMatch1 = hrRegex1.exec(document.getText()))) {
+          const startPos1 = document.positionAt(hrMatch1.index);
+          const endPos1 = document.positionAt(
+            hrMatch1.index + hrMatch1[0].length
+          );
+          const range1 = new vscode.Range(startPos1, endPos1);
+          const newText1 = `<hr class=${
+            hrMatch1[3] ? `"${hrMatch1[3]}"` : ""
+          } />`;
+          edits.push(new vscode.TextEdit(range1, newText1));
+        }
+
         // self closing the <br/> tag
         const brRegex = /<br\s*(?<!\/)>\s*(?!\/)/g;
         let brMatch;
@@ -108,6 +123,19 @@ function activate(context) {
           const range = new vscode.Range(startPos, endPos);
           const newText = "<br />";
           edits.push(new vscode.TextEdit(range, newText));
+        }
+
+        //Replacing <br> whith the attritubes to <br/>
+        const brRegex1 = /<br(\s+[^>]+)?(?<!\/)>\s*(?!\/)/g;
+        let brMatch1;
+        while ((brMatch1 = brRegex1.exec(document.getText()))) {
+          const startPos1 = document.positionAt(brMatch1.index);
+          const endPos1 = document.positionAt(
+            brMatch1.index + brMatch1[0].length
+          );
+          const range1 = new vscode.Range(startPos1, endPos1);
+          const newText1 = `<br${brMatch1[1] || ""} />`;
+          edits.push(new vscode.TextEdit(range1, newText1));
         }
 
         // replacing for with htmlFor
