@@ -2,6 +2,8 @@
 
 The JSX Attribute Ninja is a Visual Studio Code extension that helps you effortlessly replace and modify attributes in JSX files. It automates the process of converting commonly used attributes in JSX, making your development workflow faster and more efficient.
 
+![Alt Text](./Screencast%20from%2014-06-23%2001_35_32%20PM%20IST.gif)
+
 ## Features
 
 - **Automatic attribute replacement**: The extension automatically detects and replaces specific attributes in JSX files, saving you time and effort.
@@ -12,17 +14,32 @@ The JSX Attribute Ninja is a Visual Studio Code extension that helps you effortl
 ## Usage
 
 1. Install the "JSX Attribute Ninja" extension from the Visual Studio Code Marketplace.
-2. Open a JSX file in Visual Studio Code.
-3. Save the file to trigger the automatic attribute replacement process.
+2. Open a JSX or JS file in Visual Studio Code.
+3. Save the file and Format the Document with JSX Attribute Ninja to trigger the automatic attribute replacement process.
 4. Sit back and let the JSX Attribute Ninja do its magic! It will replace the specified attributes with their JSX equivalents throughout the file.
 
 ## Configuration
 
-The extension provides some configuration options to customize its behavior. To access the configuration settings, follow these steps:
+To configure the JSX Attribute Ninja extension, follow these steps:
 
-1. Go to **File > Preferences > Settings** or use the keyboard shortcut (`Ctrl/Cmd + ,`).
-2. In the Settings tab, search for "JSX Attribute Ninja".
-3. Adjust the configuration options according to your preferences.
+1. Right-click on the file you want to format.
+2. Select "Format Document" from the context menu.
+3. Choose "JSX Attribute Ninja" from the available formatting options.
+
+That's it! The extension will automatically format the document according to the specified rules.
+
+## Supported Attribute Replacements
+
+The JSX Attribute Ninja supports the following attribute replacements:
+
+- `class` to `className`
+- `href="#"` to `href="/"`
+- `<input>` to `<input />`
+- `<img>` to `<img />`
+- Inline styling conversion to compatible React syntax
+- `<hr>` to `<hr />`
+- `<br>` to `<br />`
+- `for` to `htmlFor`
 
 ## Contribution
 

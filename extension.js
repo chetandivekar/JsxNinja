@@ -11,6 +11,7 @@ function activate(context) {
       provideDocumentFormattingEdits(document) {
         const edits = [];
 
+        // replacing class= to className=
         const classRegex = /class=/g;
         let classMatch;
         while ((classMatch = classRegex.exec(document.getText()))) {
@@ -23,6 +24,7 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        //replacig href="#" to href="/"
         const hrefRegex = /href="#"/g;
         let hrefMatch;
         while ((hrefMatch = hrefRegex.exec(document.getText()))) {
@@ -35,6 +37,7 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        // self closing the input tag
         const inputRegex = /<input(\s+[^>]+)?(?<!\/)>\s*(?!\/)/g;
         let inputMatch;
         while ((inputMatch = inputRegex.exec(document.getText()))) {
@@ -47,6 +50,45 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        // self closing the img tag
+        const imgRegex = /<img(\s+[^>]+)?(?<!\/)>\s*(?!\/)/g;
+        let imgMatch;
+        while ((imgMatch = imgRegex.exec(document.getText()))) {
+          const startPos = document.positionAt(imgMatch.index);
+          const endPos = document.positionAt(
+            imgMatch.index + imgMatch[0].length
+          );
+          const range = new vscode.Range(startPos, endPos);
+          const newText = `<img${imgMatch[1] || ""} />`;
+          edits.push(new vscode.TextEdit(range, newText));
+        }
+
+        // changing inline styling to compaitable with react
+        const styleRegex = /style="([^"]+)"/g;
+        let styleMatch;
+        while ((styleMatch = styleRegex.exec(document.getText()))) {
+          const startPos = document.positionAt(styleMatch.index);
+          const endPos = document.positionAt(
+            styleMatch.index + styleMatch[0].length
+          );
+          const range = new vscode.Range(startPos, endPos);
+          const oldStyle = styleMatch[1];
+          const newStyle = oldStyle
+            .split(";")
+            .filter(Boolean)
+            .map((style) => {
+              const [property, value] = style.trim().split(":");
+              const formattedProperty = property
+                .trim()
+                .replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
+              return `${formattedProperty}: "${value.trim()}"`;
+            })
+            .join(", ");
+          const newText = `style={{${newStyle}}}`;
+          edits.push(new vscode.TextEdit(range, newText));
+        }
+
+        // self closing the <hr/> tag
         const hrRegex = /<hr\s*(?<!\/)>\s*(?!\/)/g;
         let hrMatch;
         while ((hrMatch = hrRegex.exec(document.getText()))) {
@@ -57,6 +99,7 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        // self closing the <br/> tag
         const brRegex = /<br\s*(?<!\/)>\s*(?!\/)/g;
         let brMatch;
         while ((brMatch = brRegex.exec(document.getText()))) {
@@ -67,6 +110,7 @@ function activate(context) {
           edits.push(new vscode.TextEdit(range, newText));
         }
 
+        // replacing for with htmlFor
         const forRegex = /for=/g;
         let forMatch;
         while ((forMatch = forRegex.exec(document.getText()))) {
